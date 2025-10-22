@@ -141,7 +141,7 @@ export default function ProjectInput(props: ObjectInputProps) {
 
           {/* Render fields based on schemaType */}
           {schemaType.fields?.map((field) => {
-            if (field.name === side === 'left' ? 'leftContent' : 'rightContent') {
+            if (field.name === (side === 'left' ? 'leftContent' : 'rightContent')) {
               // This is an object field, render its input
               const objectField = field as any
               return objectField.type.inputComponent ? (
@@ -151,7 +151,7 @@ export default function ProjectInput(props: ObjectInputProps) {
                     schemaType: objectField.type,
                     value: content,
                     onChange: (patch: any) => {
-                      handleFieldChange(side === 'left' ? 'leftContent' : 'rightContent', patch)
+                      handleFieldChange((side === 'left' ? 'leftContent' : 'rightContent'), patch)
                     }
                   })}
                 </div>
