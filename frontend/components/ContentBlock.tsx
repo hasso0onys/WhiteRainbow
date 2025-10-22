@@ -260,12 +260,12 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
 
     const overlay = overlayData
 
-    // Font size classes - Mobile optimized
+    // Font size classes - Mobile optimized (smaller)
     const fontSizeClasses = {
-      small: 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
-      medium: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl',
-      large: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl',
-      xlarge: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl',
+      small: 'text-sm sm:text-base md:text-lg lg:text-xl',
+      medium: 'text-base sm:text-lg md:text-xl lg:text-2xl',
+      large: 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
+      xlarge: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl',
     }
 
     // Font weight classes
@@ -363,7 +363,7 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className={`absolute inset-0 flex ${styles.verticalAlign} justify-center ${styles.backgroundColor} overflow-auto p-4 sm:p-6 md:p-8`}
+        className={`absolute inset-0 flex ${styles.verticalAlign} justify-center ${styles.backgroundColor} overflow-auto p-2 sm:p-4 md:p-6`}
       >
         {hasCustomHTML ? (
           // For custom HTML, render without Tailwind classes
@@ -373,7 +373,7 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
           />
         ) : (
           // For simple text with icon
-          <div className={`flex ${getLayoutClass()} items-center gap-3 sm:gap-4 md:gap-6 w-full h-full`}>
+          <div className={`flex ${getLayoutClass()} items-center gap-2 sm:gap-3 md:gap-4 w-full h-full`}>
             {IconComponent && (
               <motion.div
                 initial={{ scale: 0 }}
@@ -381,14 +381,14 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <IconComponent
-                  className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 ${styles.textColor}`}
+                  className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 ${styles.textColor}`}
                   strokeWidth={1.5}
                 />
               </motion.div>
             )}
             <div
               dangerouslySetInnerHTML={{ __html: replaceTemplateVars(overlay.html || overlay.text, logo) }}
-              className={`${styles.fontSize} ${styles.fontWeight} ${styles.textAlign} ${styles.textColor} tracking-wide leading-tight whitespace-pre-wrap max-w-full`}
+              className={`${styles.fontSize} ${styles.fontWeight} ${styles.textAlign} ${styles.textColor} tracking-wide leading-snug whitespace-pre-wrap max-w-full overflow-hidden`}
             />
           </div>
         )}

@@ -40,7 +40,7 @@ export default function TopBar({
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Buttons - Left for RTL */}
           <motion.div
-            className="flex items-center gap-2 sm:gap-4"
+            className="flex items-center gap-1.5 sm:gap-4"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -48,11 +48,11 @@ export default function TopBar({
             {/* Contact Button */}
             <Link
               href="/contact"
-              className="group relative px-3 py-2 sm:px-6 sm:py-2.5 overflow-hidden"
+              className="group relative px-2 py-1.5 sm:px-6 sm:py-2.5 overflow-hidden"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-white/10 to-white/5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></span>
-              <span className="relative flex items-center gap-1 sm:gap-2 text-white font-medium text-xs sm:text-sm tracking-wide">
-                <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="relative flex items-center gap-1 sm:gap-2 text-white font-medium text-[10px] sm:text-sm tracking-wide">
+                <Mail className="w-2.5 h-2.5 sm:w-4 sm:h-4" />
                 {contactButton}
               </span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
@@ -61,11 +61,11 @@ export default function TopBar({
             {/* Booking Button */}
             <Link
               href="/booking"
-              className="group relative px-3 py-2 sm:px-6 sm:py-2.5 overflow-hidden bg-white rounded-sm"
+              className="group relative px-2 py-1.5 sm:px-6 sm:py-2.5 overflow-hidden bg-white rounded-sm"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-gray-100 to-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-              <span className="relative flex items-center gap-1 sm:gap-2 text-black font-bold text-xs sm:text-sm tracking-wide">
-                <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="relative flex items-center gap-1 sm:gap-2 text-black font-bold text-[10px] sm:text-sm tracking-wide">
+                <Calendar className="w-2.5 h-2.5 sm:w-4 sm:h-4" />
                 {bookingButton}
               </span>
               <span className="absolute inset-0 rounded-sm border-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
