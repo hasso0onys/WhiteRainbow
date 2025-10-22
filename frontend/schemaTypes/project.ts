@@ -1,6 +1,7 @@
 import { defineType, defineField } from 'sanity'
 import OverlayTextInput from '../components/OverlayTextInput'
 import ContentBoxInput from '../components/ContentBoxInput'
+import { CloudinaryVideoInput } from '../components/CloudinaryVideoInput'
 
 export default defineType({
   name: 'project',
@@ -111,10 +112,13 @@ export default defineType({
         },
         {
           name: 'cloudinaryVideo',
-          title: 'رابط فيديو Cloudinary',
-          type: 'url',
-          description: 'الصق رابط الفيديو من Cloudinary هنا',
+          title: 'فيديو Cloudinary',
+          type: 'string',
+          description: 'ارفع الفيديو مباشرة أو الصق الرابط',
           hidden: ({ parent }) => parent?.type !== 'video',
+          components: {
+            input: CloudinaryVideoInput,
+          },
         },
         {
           name: 'text',
@@ -177,10 +181,13 @@ export default defineType({
         },
         {
           name: 'cloudinaryVideo',
-          title: 'رابط فيديو Cloudinary',
-          type: 'url',
-          description: 'الصق رابط الفيديو من Cloudinary هنا',
+          title: 'فيديو Cloudinary',
+          type: 'string',
+          description: 'ارفع الفيديو مباشرة أو الصق الرابط',
           hidden: ({ parent }) => parent?.type !== 'video',
+          components: {
+            input: CloudinaryVideoInput,
+          },
         },
         {
           name: 'text',
