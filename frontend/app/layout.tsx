@@ -3,9 +3,7 @@ import "./globals.css";
 import { client } from "@/lib/sanity";
 import { SITE_SETTINGS_QUERY } from "@/lib/queries";
 import { SiteSettings } from "@/lib/types";
-import TopBar from "@/components/TopBar";
-import BottomBar from "@/components/BottomBar";
-import Logo from "@/components/Logo";
+import ConditionalLayout from "@/components/ConditionalLayout";
 
 export const metadata: Metadata = {
   title: "Projection Mapping Portfolio",
@@ -75,30 +73,9 @@ export default async function RootLayout({
           backgroundColor: '#000000',
         }}
       >
-        {/* Top Bar - Fixed */}
-        <TopBar
-          logo={settings.logo}
-          projectName={settings.projectName}
-          contactButton={settings.contactButton}
-          bookingButton={settings.bookingButton}
-          barColor={settings.barColor}
-        />
-
-        {/* Main Content Area - Between Bars */}
-        <main
-          className="relative w-full"
-          style={{
-            paddingTop: '80px', // Top bar height
-          }}
-        >
+        <ConditionalLayout settings={settings}>
           {children}
-        </main>
-
-        {/* Bottom Bar - Fixed */}
-        <BottomBar
-          socialLinks={settings.socialLinks || []}
-          barColor={settings.barColor}
-        />
+        </ConditionalLayout>
       </body>
     </html>
   );

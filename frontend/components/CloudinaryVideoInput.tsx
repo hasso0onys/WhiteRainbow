@@ -51,6 +51,24 @@ export const CloudinaryVideoInput = (props: StringInputProps) => {
         clientAllowedFormats: ['mp4', 'mov', 'avi', 'webm'],
         showPoweredBy: false,
         language: 'ar',
+        
+        // Video optimization & compression
+        transformation: {
+          quality: 'auto:best',
+          fetch_format: 'auto',
+          video_codec: 'auto',
+        },
+        
+        // Auto-optimize video on upload
+        eager: [
+          {
+            quality: 'auto:good',
+            fetch_format: 'auto',
+            video_codec: 'auto',
+            bit_rate: '1m', // 1Mbps - balance between quality and size
+          },
+        ],
+        
         text: {
           ar: {
             'menu.files': 'ملفاتي',
