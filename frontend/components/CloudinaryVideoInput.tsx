@@ -89,9 +89,15 @@ export const CloudinaryVideoInput = (props: StringInputProps) => {
         }
 
         if (result.event === 'success') {
-          const videoUrl = result.info.secure_url
-          onChange(value ? set(videoUrl) : set(videoUrl))
-          setPreviewUrl(videoUrl)
+          // Get optimized URL with transformations
+          const publicId = result.info.public_id
+          const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dp7vp2rec'
+          
+          // Build optimized video URL with compression parameters
+          const optimizedUrl = `https://res.cloudinary.com/${cloudName}/video/upload/q_auto:good,vc_auto,br_1m/${publicId}.mp4`
+          
+          onChange(value ? set(optimizedUrl) : set(optimizedUrl))
+          setPreviewUrl(optimizedUrl)
           setUploading(false)
           widget.close()
         }
