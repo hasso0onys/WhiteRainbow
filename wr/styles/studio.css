@@ -1,0 +1,302 @@
+/* Tailwind Base Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Sanity Studio Styles using Tailwind */
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-gray-50 to-gray-100 font-sans;
+  }
+}
+
+@layer components {
+  /* Main container */
+  [data-ui="Pane"] {
+    @apply bg-gray-50 rounded-studio m-2;
+  }
+
+  /* Document pane */
+  [data-testid="document-panel-scroller"] {
+    @apply bg-white p-6 rounded-studio;
+  }
+
+  /* Cards */
+  [data-ui="Card"] {
+    @apply bg-white border border-gray-200 rounded-studio-sm shadow-studio transition-all duration-200;
+  }
+
+  [data-ui="Card"]:hover {
+    @apply shadow-studio-lg -translate-y-0.5;
+  }
+
+  /* Stack spacing */
+  [data-ui="Stack"] > * + * {
+    @apply mt-4;
+  }
+
+  /* Fieldsets - the numbered sections */
+  fieldset {
+    @apply bg-white border-2 border-gray-200 rounded-studio p-6 mb-6 shadow-studio transition-all duration-300;
+  }
+
+  fieldset:hover {
+    @apply border-blue-400 shadow-lg shadow-blue-100;
+  }
+
+  /* Fieldset legend (titles) */
+  fieldset legend {
+    @apply bg-gradient-to-r from-blue-800 to-blue-600 text-white px-6 py-3 rounded-studio-sm font-semibold text-base shadow-studio mb-4;
+  }
+
+  /* Text inputs */
+  [data-ui="TextInput"],
+  [data-ui="TextArea"],
+  input[type="text"],
+  input[type="number"],
+  input[type="url"],
+  textarea {
+    @apply bg-white border-2 border-gray-200 rounded-studio-sm px-4 py-3 text-[15px] transition-all duration-200 w-full;
+  }
+
+  [data-ui="TextInput"]:focus,
+  [data-ui="TextArea"]:focus,
+  input:focus,
+  textarea:focus {
+    @apply border-blue-400 ring-4 ring-blue-100 outline-none;
+  }
+
+  /* Labels */
+  label,
+  [data-ui="Label"] {
+    @apply text-gray-900 font-semibold text-sm mb-2 block;
+  }
+
+  /* Buttons */
+  button[data-ui="Button"] {
+    @apply rounded-studio-sm px-5 py-2.5 font-medium text-sm transition-all duration-200 border-2 border-transparent;
+  }
+
+  button[data-ui="Button"][data-mode="default"] {
+    @apply bg-blue-800 text-white shadow-studio;
+  }
+
+  button[data-ui="Button"][data-mode="default"]:hover {
+    @apply bg-blue-600 -translate-y-0.5 shadow-studio-lg;
+  }
+
+  button[data-ui="Button"][data-mode="ghost"] {
+    @apply bg-transparent border-2 border-gray-200;
+  }
+
+  button[data-ui="Button"][data-mode="ghost"]:hover {
+    @apply bg-gray-50 border-blue-400;
+  }
+
+  button[data-ui="Button"][data-tone="primary"] {
+    @apply bg-gradient-to-r from-blue-800 to-blue-600 text-white;
+  }
+
+  button[data-ui="Button"][data-tone="critical"] {
+    @apply bg-red-500 text-white;
+  }
+
+  button[data-ui="Button"][data-tone="critical"]:hover {
+    @apply bg-red-600;
+  }
+
+  /* Radio buttons */
+  [data-ui="Radio"] {
+    @apply inline-flex items-center gap-2;
+  }
+
+  input[type="radio"] {
+    @apply appearance-none w-5 h-5 border-2 border-gray-200 rounded-full relative transition-all duration-200 cursor-pointer;
+  }
+
+  input[type="radio"]:checked {
+    @apply border-blue-800 bg-blue-800;
+  }
+
+  input[type="radio"]:checked::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full;
+  }
+
+  /* Radio group - horizontal layout */
+  [role="radiogroup"] {
+    @apply flex gap-4 flex-wrap;
+  }
+
+  [role="radiogroup"] label {
+    @apply flex-1 min-w-[200px] px-6 py-4 bg-white border-2 border-gray-200 rounded-studio-sm cursor-pointer transition-all duration-200 flex items-center gap-3;
+  }
+
+  [role="radiogroup"] label:hover {
+    @apply border-blue-400 bg-gray-50;
+  }
+
+  [role="radiogroup"] input[type="radio"]:checked ~ * {
+    @apply border-blue-800 bg-blue-50;
+  }
+
+  /* Image upload button */
+  [data-testid="file-input-upload-button"] {
+    @apply bg-gradient-to-r from-green-500 to-green-600 text-white border-none rounded-studio-sm px-8 py-4 font-semibold cursor-pointer transition-all duration-300;
+  }
+
+  [data-testid="file-input-upload-button"]:hover {
+    @apply -translate-y-0.5 shadow-lg shadow-green-300;
+  }
+
+  /* Image preview */
+  [data-ui="Flex"] img {
+    @apply rounded-studio-sm shadow-studio-lg;
+  }
+
+  /* Navbar */
+  [data-ui="Navbar"] {
+    @apply bg-gradient-to-r from-blue-800 to-blue-900 shadow-studio-lg;
+  }
+
+  /* Sidebar */
+  [data-testid="studio-navbar"] {
+    @apply bg-white border-r border-gray-200;
+  }
+
+  /* Menu items in sidebar */
+  [data-ui="MenuItem"] {
+    @apply rounded-studio-sm mx-2 my-1 transition-all duration-200;
+  }
+
+  [data-ui="MenuItem"]:hover {
+    @apply bg-gray-50;
+  }
+
+  /* Content list */
+  [data-ui="Box"][data-testid*="pane-"] {
+    @apply bg-white;
+  }
+
+  /* Search bar */
+  [data-testid="search-input"] {
+    @apply bg-white border-2 border-gray-200 rounded-studio-sm px-4 py-3 transition-all duration-200;
+  }
+
+  [data-testid="search-input"]:focus {
+    @apply border-blue-400 ring-4 ring-blue-100;
+  }
+
+  /* Dialog/Modal */
+  [role="dialog"] {
+    @apply rounded-studio shadow-2xl overflow-hidden;
+  }
+
+  /* Toast notifications */
+  [data-ui="Toast"] {
+    @apply rounded-studio-sm shadow-studio-lg px-6 py-4;
+  }
+
+  /* Document header */
+  [data-testid="document-panel-header"] {
+    @apply bg-gradient-to-r from-blue-800 to-blue-600 text-white px-6 py-5 rounded-t-studio -mx-6 -mt-6 mb-6;
+  }
+
+  /* Breadcrumbs */
+  [data-ui="Breadcrumbs"] {
+    @apply bg-gray-50 px-4 py-3 rounded-studio-sm mb-4;
+  }
+
+  /* Tabs */
+  [role="tablist"] {
+    @apply border-b-2 border-gray-200 mb-5;
+  }
+
+  [role="tab"] {
+    @apply px-6 py-3 border-none bg-transparent text-gray-500 font-medium cursor-pointer relative transition-all duration-200;
+  }
+
+  [role="tab"]:hover {
+    @apply text-gray-900;
+  }
+
+  [role="tab"][aria-selected="true"] {
+    @apply text-blue-800;
+  }
+
+  [role="tab"][aria-selected="true"]::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 right-0 h-0.5 bg-blue-800;
+  }
+
+  /* Status badges */
+  [data-ui="Badge"] {
+    @apply rounded-full px-3 py-1 text-xs font-semibold;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2.5 h-2.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-50 rounded-studio-sm;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 rounded-studio-sm transition-colors duration-200;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+
+  /* Focus visible for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-blue-800 outline-offset-2;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-ui="Card"],
+fieldset {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  @apply text-right;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  [data-ui="Pane"] {
+    @apply m-1;
+  }
+
+  fieldset {
+    @apply p-4;
+  }
+
+  fieldset legend {
+    @apply px-4 py-2 text-sm;
+  }
+
+  [role="radiogroup"] label {
+    @apply min-w-full;
+  }
+}

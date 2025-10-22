@@ -1,0 +1,25 @@
+{
+  "name": "projection-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Professional Projection Mapping Portfolio with Next.js and Sanity CMS",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:studio": "cd studio && npm run dev",
+    "build": "npm-run-all build:*",
+    "build:frontend": "cd frontend && npm run build",
+    "build:studio": "cd studio && npm run build",
+    "install:all": "npm install && cd frontend && npm install && cd ../studio && npm install",
+    "clean": "rm -rf frontend/node_modules frontend/.next studio/node_modules studio/.sanity node_modules"
+  },
+  "keywords": [
+    "projection-mapping",
+    "portfolio",
+    "nextjs",
+    "sanity",
+    "cms"
+  ],
+  "author": "",
+  "license": "MIT"
+}

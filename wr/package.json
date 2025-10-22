@@ -1,0 +1,45 @@
+{
+  "name": "wr",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/asset-utils": "^2.3.0",
+    "@sanity/client": "^7.12.0",
+    "@sanity/icons": "^3.7.4",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.11.0",
+    "lucide-react": "^0.545.0",
+    "react": "^19.1",
+    "react-dom": "^19.1",
+    "sanity": "^4.11.0",
+    "styled-components": "^6.1.18"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^5.0.2",
+    "@types/react": "^19.1",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.28",
+    "postcss": "^8.5.6",
+    "prettier": "^3.5",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.8"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
+  }
+}
