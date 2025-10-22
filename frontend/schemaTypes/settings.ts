@@ -98,6 +98,32 @@ export default defineType({
       description: 'لون البارات العلوية والسفلية (مثال: #000000)',
       initialValue: '#000000',
     }),
+    defineField({
+      name: 'contactInfo',
+      title: 'معلومات التواصل',
+      type: 'object',
+      description: 'تظهر في صفحة التواصل',
+      fields: [
+        {
+          name: 'email',
+          title: 'البريد الإلكتروني',
+          type: 'string',
+          validation: (Rule) => Rule.email(),
+        },
+        {
+          name: 'phone',
+          title: 'رقم الهاتف',
+          type: 'string',
+          description: 'مثال: +966501234567',
+        },
+        {
+          name: 'location',
+          title: 'الموقع',
+          type: 'string',
+          description: 'مثال: الرياض، المملكة العربية السعودية',
+        },
+      ],
+    }),
   ],
   preview: {
     prepare() {

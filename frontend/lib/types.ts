@@ -49,6 +49,12 @@ export interface SocialLink {
   url: string
 }
 
+export interface ContactInfo {
+  email?: string
+  phone?: string
+  location?: string
+}
+
 export interface LogoSettings {
   image?: {
     asset: {
@@ -74,4 +80,5 @@ export interface SiteSettings {
   bookingButton?: string
   socialLinks: SocialLink[]
   barColor?: string
+  contactInfo?: ContactInfo
 }
