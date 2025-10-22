@@ -260,12 +260,12 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
 
     const overlay = overlayData
 
-    // Font size classes - Mobile optimized (smaller)
+    // Font size classes - Mobile optimized (very small)
     const fontSizeClasses = {
-      small: 'text-sm sm:text-base md:text-lg lg:text-xl',
-      medium: 'text-base sm:text-lg md:text-xl lg:text-2xl',
-      large: 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
-      xlarge: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl',
+      small: 'text-xs sm:text-sm md:text-base lg:text-lg',
+      medium: 'text-sm sm:text-base md:text-lg lg:text-xl',
+      large: 'text-base sm:text-lg md:text-xl lg:text-2xl',
+      xlarge: 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
     }
 
     // Font weight classes
@@ -373,7 +373,7 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
           />
         ) : (
           // For simple text with icon
-          <div className={`flex ${getLayoutClass()} items-center gap-2 sm:gap-3 md:gap-4 w-full h-full`}>
+          <div className={`flex ${getLayoutClass()} items-center gap-1.5 sm:gap-2 md:gap-3 w-full h-full`}>
             {IconComponent && (
               <motion.div
                 initial={{ scale: 0 }}
@@ -381,7 +381,7 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <IconComponent
-                  className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 ${styles.textColor}`}
+                  className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 ${styles.textColor}`}
                   strokeWidth={1.5}
                 />
               </motion.div>
