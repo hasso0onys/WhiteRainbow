@@ -260,12 +260,12 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
 
     const overlay = overlayData
 
-    // Font size classes
+    // Font size classes - Mobile optimized
     const fontSizeClasses = {
-      small: 'text-2xl md:text-3xl lg:text-4xl',
-      medium: 'text-3xl md:text-4xl lg:text-5xl',
-      large: 'text-4xl md:text-6xl lg:text-7xl',
-      xlarge: 'text-5xl md:text-7xl lg:text-8xl',
+      small: 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
+      medium: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl',
+      large: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl',
+      xlarge: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl',
     }
 
     // Font weight classes
@@ -363,18 +363,17 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className={`absolute inset-0 flex ${styles.verticalAlign} justify-center ${styles.backgroundColor} overflow-auto`}
-        style={{ padding: '20px' }}
+        className={`absolute inset-0 flex ${styles.verticalAlign} justify-center ${styles.backgroundColor} overflow-auto p-4 sm:p-6 md:p-8`}
       >
         {hasCustomHTML ? (
           // For custom HTML, render without Tailwind classes
           <div
             dangerouslySetInnerHTML={{ __html: replaceTemplateVars(overlay.html, logo) }}
-            style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            className="w-full h-full flex items-center justify-center px-2 sm:px-4"
           />
         ) : (
           // For simple text with icon
-          <div className={`flex ${getLayoutClass()} items-center gap-6 w-full h-full`}>
+          <div className={`flex ${getLayoutClass()} items-center gap-3 sm:gap-4 md:gap-6 w-full h-full`}>
             {IconComponent && (
               <motion.div
                 initial={{ scale: 0 }}
@@ -382,14 +381,14 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <IconComponent
-                  className={`w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 ${styles.textColor}`}
+                  className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 ${styles.textColor}`}
                   strokeWidth={1.5}
                 />
               </motion.div>
             )}
             <div
               dangerouslySetInnerHTML={{ __html: replaceTemplateVars(overlay.html || overlay.text, logo) }}
-              className={`${styles.fontSize} ${styles.fontWeight} ${styles.textAlign} ${styles.textColor} tracking-wide leading-tight whitespace-pre-wrap`}
+              className={`${styles.fontSize} ${styles.fontWeight} ${styles.textAlign} ${styles.textColor} tracking-wide leading-tight whitespace-pre-wrap max-w-full`}
             />
           </div>
         )}
@@ -440,20 +439,20 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.3 }}
-                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent px-6 pt-100 pb-10"
+                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent px-3 sm:px-6 pt-20 sm:pt-40 md:pt-100 pb-6 sm:pb-10"
                 style={{ pointerEvents: 'auto' }}
               >
                 {/* Control Buttons - فوق شريط التقدم */}
-                <div className="flex items-center justify-center gap-3 mb-10">
+                <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-10">
                   {/* Restart Button */}
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={restartVideo}
-                    className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+                    className="p-1.5 sm:p-2 md:p-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
                     aria-label="إعادة التشغيل"
                   >
-                    <RotateCcw className="w-4 h-4 text-white" />
+                    <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-white" />
                   </motion.button>
 
                   {/* Play/Pause Button */}
@@ -461,13 +460,13 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={togglePlay}
-                    className="p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors"
+                    className="p-2 sm:p-2.5 md:p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors"
                     aria-label={isPlaying ? 'إيقاف' : 'تشغيل'}
                   >
                     {isPlaying ? (
-                      <Pause className="w-5 h-5 text-white" fill="white" />
+                      <Pause className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="white" />
                     ) : (
-                      <Play className="w-5 h-5 text-white" fill="white" />
+                      <Play className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="white" />
                     )}
                   </motion.button>
 
@@ -476,13 +475,13 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={toggleMute}
-                    className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+                    className="p-1.5 sm:p-2 md:p-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
                     aria-label={isMuted ? 'تشغيل الصوت' : 'كتم الصوت'}
                   >
                     {isMuted ? (
-                      <VolumeX className="w-4 h-4 text-white" />
+                      <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-white" />
                     ) : (
-                      <Volume2 className="w-4 h-4 text-white" />
+                      <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-white" />
                     )}
                   </motion.button>
 
@@ -491,17 +490,17 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={openModal}
-                    className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+                    className="p-1.5 sm:p-2 md:p-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
                     aria-label="شاشة كاملة"
                   >
-                    <Maximize2 className="w-4 h-4 text-white" />
+                    <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-white" />
                   </motion.button>
                 </div>
 
                 {/* Progress Bar */}
                 <div>
                   <div 
-                    className="relative h-1.5 bg-white/20 rounded-full cursor-pointer hover:h-2 transition-all group/progress"
+                    className="relative h-1 sm:h-1.5 bg-white/20 rounded-full cursor-pointer hover:h-1.5 sm:hover:h-2 transition-all group/progress"
                     onClick={handleProgressClick}
                   >
                     <motion.div 
@@ -510,13 +509,13 @@ export default function ContentBlock({ content, logo }: ContentBlockProps) {
                       transition={{ duration: 0.1 }}
                     />
                     <div 
-                      className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover/progress:opacity-100 transition-opacity"
+                      className="absolute top-1/2 -translate-y-1/2 w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full opacity-0 group-hover/progress:opacity-100 transition-opacity"
                       style={{ left: `${progress}%`, transform: 'translate(-50%, -50%)' }}
                     />
                   </div>
                   
                   {/* Time Display */}
-                  <div className="flex justify-between items-center mt-2 text-white text-xs font-medium opacity-80">
+                  <div className="flex justify-between items-center mt-1.5 sm:mt-2 text-white text-[10px] sm:text-xs font-medium opacity-80">
                     <span>{formatTime(videoRef.current?.currentTime || 0)}</span>
                     <span>{formatTime(duration)}</span>
                   </div>

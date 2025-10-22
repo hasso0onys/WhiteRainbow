@@ -21,7 +21,13 @@
 
 html {
   scroll-snap-type: y mandatory;
-  scroll-padding-top: 80px; /* Height of TopBar */
+  scroll-padding-top: 64px; /* Height of TopBar on mobile (16 * 4 = 64px) */
+}
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 80px; /* Height of TopBar on desktop */
+  }
 }
 
 body {

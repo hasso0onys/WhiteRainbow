@@ -18,9 +18,9 @@ export default function FullscreenItem({ project, logo }: FullscreenItemProps) {
       viewport={{ once: false, amount: 0.3 }}
       className="project-section relative w-full"
       style={{
-        height: 'calc(100vh - 140px)', // Total screen height minus top (80px) and bottom (60px) bars
+        height: 'calc(100vh - 124px)', // Mobile: 64px top + 60px bottom = 124px
         backgroundColor: project.backgroundColor || '#000000',
-        scrollMarginTop: '80px', // Align with TopBar height
+        scrollMarginTop: '64px', // Align with TopBar height on mobile
       }}
     >
       <ContentBlock content={project.leftContent} logo={logo} />
