@@ -7,7 +7,7 @@ import {
   ImageIcon,
   PlayIcon,
   DocumentTextIcon,
-  PlusIcon
+  AddIcon
 } from '@sanity/icons'
 
 export default function ProjectInput(props: ObjectInputProps) {
@@ -114,7 +114,7 @@ export default function ProjectInput(props: ObjectInputProps) {
 
             <Button
               mode="ghost"
-              icon={PlusIcon}
+              icon={AddIcon}
               text="صورة/فيديو + نص علوي"
               onClick={() => handleContentTypeSelect(side, 'media-overlay')}
               style={{ justifyContent: 'flex-start', padding: '12px' }}
