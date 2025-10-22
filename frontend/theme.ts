@@ -4,17 +4,12 @@ const props = {
   '--white': '#ffffff',
   '--black': '#000000',
   '--brand': '#000000',
-  '--main-bg': '#ffffff',
-  '--component-bg': '#f5f5f5',
-  '--focus-color': '#000000',
 }
 
 export const customTheme = buildLegacyTheme({
   '--black': props['--black'],
   '--white': props['--white'],
-
-  '--brand-primary': props['--brand'],
-  '--brand-primary--inverted': props['--white'],
+  '--brand': props['--brand'],
 
   '--default-button-color': props['--black'],
   '--default-button-primary-color': props['--brand'],
@@ -28,7 +23,5 @@ export const customTheme = buildLegacyTheme({
   '--state-danger-color': '#f03e2f',
 
   '--main-navigation-color': props['--black'],
-  '--main-navigation-color--inverted': props['--white'],
-
-  '--focus-color': props['--focus-color'],
+  '--focus-color': props['--black'],
 })
