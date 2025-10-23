@@ -130,7 +130,9 @@ export default function OverlayTextInput(props: StringInputProps) {
         border-bottom: 2.5px solid #ffffff;
         padding-bottom: clamp(6px, 2vw, 18px);
         width: 100%;
-    ">xxxxx</h2>
+    ">
+مشروع RAWAS العقاري
+    </h2>
     
     <div style="width: 100%; display: flex; flex-direction: column; gap: clamp(12px, 2.5vw, 30px);">
         
@@ -146,7 +148,7 @@ export default function OverlayTextInput(props: StringInputProps) {
                 font-size: clamp(0.95em, 2.8vw, 1.6em);
                 color: #ffffff;
                 font-weight: 600;
-            ">xxxx</div>
+            ">الخبر</div>
         </div>
         
         <div style="display: flex; flex-direction: column; gap: 5px;">
@@ -165,7 +167,7 @@ export default function OverlayTextInput(props: StringInputProps) {
                 align-items: center;
                 gap: 9px;
             ">
-                <span style="font-size: clamp(1.4em, 3.5vw, 2.2em); font-weight: 700;">x</span>
+                <span style="font-size: clamp(1.4em, 3.5vw, 2.2em); font-weight: 700;">٤</span>
                 <span style="font-size: 0.7em; color: #cccccc;">أجهزة</span>
             </div>
         </div>
@@ -191,6 +193,7 @@ export default function OverlayTextInput(props: StringInputProps) {
       const initial = { ...currentValue, html: DEFAULT_TEXT_HTML, text: 'نص' }
       setConfig(initial)
       setHtmlCode(DEFAULT_TEXT_HTML)
+      setEditorMode('code')
       onChange(set(JSON.stringify(initial)))
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
