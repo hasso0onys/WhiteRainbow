@@ -105,6 +105,97 @@ export default function OverlayTextInput(props: StringInputProps) {
   const [editorMode, setEditorMode] = useState<'visual' | 'code'>('visual')
   const [htmlCode, setHtmlCode] = useState(currentValue.html || '')
 
+  // Default HTML template for pure text content (requested)
+  const DEFAULT_TEXT_HTML = `
+<div style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(12px, 4vw, 50px);
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    box-sizing: border-box;
+">
+    <h2 style="
+        margin: 0 0 clamp(15px, 3.5vw, 35px) 0;
+        font-size: clamp(0.9em, 3.5vw, 2.2em);
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow: 2px 4px 12px rgba(0,0,0,0.6);
+        letter-spacing: 0.8px;
+        border-bottom: 2.5px solid #ffffff;
+        padding-bottom: clamp(6px, 2vw, 18px);
+        width: 100%;
+    ">xxxxx</h2>
+    
+    <div style="width: 100%; display: flex; flex-direction: column; gap: clamp(12px, 2.5vw, 30px);">
+        
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <div style="
+                font-size: clamp(0.55em, 1.8vw, 0.8em);
+                color: #888888;
+                text-transform: uppercase;
+                letter-spacing: 1.8px;
+                font-weight: 400;
+            ">الموقع</div>
+            <div style="
+                font-size: clamp(0.95em, 2.8vw, 1.6em);
+                color: #ffffff;
+                font-weight: 600;
+            ">xxxx</div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <div style="
+                font-size: clamp(0.55em, 1.8vw, 0.8em);
+                color: #888888;
+                text-transform: uppercase;
+                letter-spacing: 1.8px;
+                font-weight: 400;
+            ">عدد الأجهزة</div>
+            <div style="
+                font-size: clamp(0.95em, 2.8vw, 1.6em);
+                color: #ffffff;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 9px;
+            ">
+                <span style="font-size: clamp(1.4em, 3.5vw, 2.2em); font-weight: 700;">x</span>
+                <span style="font-size: 0.7em; color: #cccccc;">أجهزة</span>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div style="
+        width: clamp(60px, 18vw, 120px);
+        height: 2.5px;
+        background: linear-gradient(90deg, #ffffff, transparent);
+        margin-top: clamp(15px, 3.5vw, 35px);
+        opacity: 0.6;
+    "></div>
+</div>`
+
+  // Auto-apply default template when field is the main "text" and empty
+  useEffect(() => {
+    const lastPathSegment = (props as any)?.path?.[(props as any)?.path?.length - 1]
+    const fieldName = typeof lastPathSegment === 'string' ? lastPathSegment : (lastPathSegment?.toString?.() ?? '')
+    const isMainTextField = fieldName === 'text'
+
+    if (isMainTextField && (!currentValue.html || String(currentValue.html).trim() === '')) {
+      const initial = { ...currentValue, html: DEFAULT_TEXT_HTML, text: 'نص' }
+      setConfig(initial)
+      setHtmlCode(DEFAULT_TEXT_HTML)
+      onChange(set(JSON.stringify(initial)))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   // Generate image URL from Sanity image
   const imageUrl = image?.asset ? builder.image(image).width(800).url() : null
 
