@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: "Projection Mapping Portfolio",
   description: "Professional projection mapping portfolio showcasing innovative visual experiences",
   keywords: ["projection mapping", "visual arts", "multimedia", "installation art"],
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/apple-icon.png',
+  },
   openGraph: {
     title: "Projection Mapping Portfolio",
     description: "Professional projection mapping portfolio showcasing innovative visual experiences",
