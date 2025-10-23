@@ -48,13 +48,13 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
+    // Hidden rank field used by @sanity/orderable-document-list
     defineField({
-      name: 'order',
-      title: 'الترتيب',
-      type: 'number',
-      fieldset: 'basicInfo',
-      validation: (Rule) => Rule.required().min(0),
-      description: 'ترتيب عرض المشروع في الصفحة',
+      name: 'orderRank',
+      title: 'ترتيب داخلي',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
     }),
     defineField({
       name: 'layoutType',
@@ -221,22 +221,16 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      order: 'order',
+      orderRank: 'orderRank',
       layoutType: 'layoutType',
     },
     prepare(selection) {
-      const { title, order, layoutType } = selection
+      const { title, orderRank, layoutType } = selection as any
       return {
         title: title,
-        subtitle: `الترتيب: ${order} - ${layoutType === 'fullscreen' ? 'شاشة كاملة' : 'مقسم'}`,
+        subtitle: `${layoutType === 'fullscreen' ? 'شاشة كاملة' : 'مقسم'}`,
       }
     },
   },
-  orderings: [
-    {
-      title: 'الترتيب، تصاعدي',
-      name: 'orderAsc',
-      by: [{ field: 'order', direction: 'asc' }],
-    },
-  ],
+  orderings: [],
 })

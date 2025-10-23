@@ -16,11 +16,11 @@ export const SITE_SETTINGS_QUERY = groq`
 `
 
 export const PROJECTS_QUERY = groq`
-  *[_type == "project"] | order(order asc) {
+  *[_type == "project"] | order(orderRank asc) {
     _id,
     title,
     slug,
-    order,
+    orderRank,
     layoutType,
     leftContent {
       type,

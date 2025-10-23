@@ -1,5 +1,6 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
 import { customTheme } from './theme'
@@ -17,7 +18,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: (S) =>
+      structure: (S, context) =>
         S.list()
           .title('المحتوى')
           .items([
@@ -30,14 +31,13 @@ export default defineConfig({
                   .documentId('siteSettings')
               ),
             S.divider(),
-            // Projects
-            S.listItem()
-              .title('المشاريع')
-              .child(
-                S.documentTypeList('project')
-                  .title('جميع المشاريع')
-                  .defaultOrdering([{ field: 'order', direction: 'asc' }])
-              ),
+            // Projects with drag & drop ordering
+            orderableDocumentListDeskItem({
+              type: 'project',
+              title: 'المشاريع',
+              S,
+              context,
+            }),
             S.divider(),
             // Booking Forms
             S.listItem()
