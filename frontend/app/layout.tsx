@@ -7,24 +7,24 @@ import ConditionalLayout from "@/components/ConditionalLayout";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wr-mapping.com'),
-  title: "وايت ريمبو | 3D Mapping",
-  description: "موقع شركة وايتريمبو لعروض ال3D Mapping",
-  keywords: ["3D Mapping", "Projection Mapping", "WhiteRainbow", "وايت ريمبو", "عرض بصري"],
+  title: "وايترينبو | 3D Mapping",
+  description: "موقع شركة وايترينبو لعروض ال3D Mapping",
+  keywords: ["3D Mapping", "Projection Mapping", "WhiteRainbow", "وايترينبو", "عرض بصري"],
   icons: {
     icon: '/icon.png',
     shortcut: '/icon.png',
     apple: '/apple-icon.png',
   },
   openGraph: {
-    title: "وايت ريمبو | 3D Mapping",
-    description: "موقع شركة وايتريمبو لعروض ال3D Mapping",
+    title: "وايترينبو | 3D Mapping",
+    description: "موقع شركة وايترينبو لعروض ال3D Mapping",
     type: "website",
     images: ['/og-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "وايت ريمبو | 3D Mapping",
-    description: "موقع شركة وايتريمبو لعروض ال3D Mapping",
+    title: "وايترينبو | 3D Mapping",
+    description: "موقع شركة وايترينبو لعروض ال3D Mapping",
     images: ['/og-image.png'],
   },
 };
