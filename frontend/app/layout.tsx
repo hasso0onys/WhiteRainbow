@@ -6,18 +6,26 @@ import { SiteSettings } from "@/lib/types";
 import ConditionalLayout from "@/components/ConditionalLayout";
 
 export const metadata: Metadata = {
-  title: "Projection Mapping Portfolio",
-  description: "Professional projection mapping portfolio showcasing innovative visual experiences",
-  keywords: ["projection mapping", "visual arts", "multimedia", "installation art"],
+  metadataBase: new URL('https://wr-mapping.com'),
+  title: "وايت ريمبو | 3D Mapping",
+  description: "موقع شركة وايتريمبو لعروض ال3D Mapping",
+  keywords: ["3D Mapping", "Projection Mapping", "WhiteRainbow", "وايت ريمبو", "عرض بصري"],
   icons: {
     icon: '/icon.png',
     shortcut: '/icon.png',
     apple: '/apple-icon.png',
   },
   openGraph: {
-    title: "Projection Mapping Portfolio",
-    description: "Professional projection mapping portfolio showcasing innovative visual experiences",
+    title: "وايت ريمبو | 3D Mapping",
+    description: "موقع شركة وايتريمبو لعروض ال3D Mapping",
     type: "website",
+    images: ['/og-image.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "وايت ريمبو | 3D Mapping",
+    description: "موقع شركة وايتريمبو لعروض ال3D Mapping",
+    images: ['/og-image.png'],
   },
 };
 
