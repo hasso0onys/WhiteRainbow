@@ -39,18 +39,41 @@ export const CloudinaryVideoInput = (props: StringInputProps) => {
     }
 
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dp7vp2rec'
-    const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'ml_default'
 
     const widget = window.cloudinary.createUploadWidget(
       {
         cloudName,
-        uploadPreset,
         sources: ['local', 'url', 'camera'],
         resourceType: 'video',
-        maxFileSize: 100000000, // 100MB
+        maxFileSize: 500000000, // 500MB (5x larger!)
         clientAllowedFormats: ['mp4', 'mov', 'avi', 'webm'],
         showPoweredBy: false,
         language: 'ar',
+        
+        // Enable chunked upload for large files
+        chunked: true,
+        chunkSize: 6000000, // 6MB chunks (recommended for large files)
+        maxChunkSize: 20000000, // 20MB max chunk size
+        
+        // Signed upload - allows files larger than 100MB
+        uploadSignature: async (callback: any, paramsToSign: any) => {
+          try {
+            const response = await fetch('/api/cloudinary-signature', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                timestamp: paramsToSign.timestamp,
+                folder: 'videos',
+              }),
+            })
+            
+            const data = await response.json()
+            callback(data.signature)
+          } catch (error) {
+            console.error('Error getting signature:', error)
+            alert('حدث خطأ في التوقيع، يرجى المحاولة مرة أخرى')
+          }
+        },
         
         // Video optimization & compression
         transformation: {
