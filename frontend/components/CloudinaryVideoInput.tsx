@@ -32,7 +32,7 @@ export const CloudinaryVideoInput = (props: StringInputProps) => {
     setPreviewUrl(value || '')
   }, [value])
 
-  const openUploadWidget = () => {
+  const openUploadWidget = async () => {
     if (!window.cloudinary) {
       alert('جاري تحميل أداة الرفع، يرجى المحاولة مرة أخرى')
       return
@@ -40,9 +40,29 @@ export const CloudinaryVideoInput = (props: StringInputProps) => {
 
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dp7vp2rec'
 
+    // Get API key from backend first
+    let apiKey = ''
+    try {
+      const response = await fetch('/api/cloudinary-signature', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          timestamp: Math.round(new Date().getTime() / 1000),
+          folder: 'videos',
+        }),
+      })
+      const data = await response.json()
+      apiKey = data.apiKey
+    } catch (error) {
+      console.error('Error getting API key:', error)
+      alert('حدث خطأ في الاتصال بالسيرفر')
+      return
+    }
+
     const widget = window.cloudinary.createUploadWidget(
       {
         cloudName,
+        apiKey, // Add API key here for signed uploads
         sources: ['local', 'url', 'camera'],
         resourceType: 'video',
         maxFileSize: 500000000, // 500MB (5x larger!)
