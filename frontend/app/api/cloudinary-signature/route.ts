@@ -4,7 +4,7 @@ import crypto from 'crypto'
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { timestamp, folder, eager } = body
+    const { paramsToSign } = body
 
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
     const apiSecret = process.env.CLOUDINARY_API_SECRET
@@ -16,40 +16,43 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Build parameters for signature (must be alphabetically sorted)
-    const params: any = {
-      folder: folder || 'videos',
-      timestamp: timestamp,
+    // If paramsToSign is provided (from widget), use it directly
+    // Otherwise, use the old format for getting API key only
+    if (paramsToSign) {
+      // Sort parameters alphabetically and build signature string
+      const sortedParams = Object.keys(paramsToSign)
+        .sort()
+        .map(key => {
+          const value = paramsToSign[key]
+          // Handle arrays (like eager)
+          if (Array.isArray(value)) {
+            return `${key}=${value.join(',')}`
+          }
+          return `${key}=${value}`
+        })
+        .join('&')
+
+      // Create signature string (params + secret)
+      const signatureString = `${sortedParams}${apiSecret}`
+      
+      console.log('Signing string:', signatureString)
+      
+      // Generate signature using SHA-1
+      const signature = crypto
+        .createHash('sha1')
+        .update(signatureString)
+        .digest('hex')
+
+      return NextResponse.json({
+        signature,
+      })
+    } else {
+      // Just return API key for initial widget setup
+      return NextResponse.json({
+        cloudName,
+        apiKey: process.env.CLOUDINARY_API_KEY,
+      })
     }
-
-    // Add eager transformations for video compression
-    if (eager) {
-      params.eager = eager
-    }
-
-    // Sort parameters alphabetically
-    const sortedParams = Object.keys(params)
-      .sort()
-      .map(key => `${key}=${params[key]}`)
-      .join('&')
-
-    // Create signature string
-    const signatureString = `${sortedParams}${apiSecret}`
-    
-    // Generate signature using SHA-1
-    const signature = crypto
-      .createHash('sha1')
-      .update(signatureString)
-      .digest('hex')
-
-    return NextResponse.json({
-      signature,
-      timestamp,
-      cloudName,
-      apiKey: process.env.CLOUDINARY_API_KEY,
-      folder: params.folder,
-      eager: params.eager,
-    })
   } catch (error) {
     console.error('Error generating signature:', error)
     return NextResponse.json(

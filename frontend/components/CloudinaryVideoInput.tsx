@@ -46,10 +46,7 @@ export const CloudinaryVideoInput = (props: StringInputProps) => {
       const response = await fetch('/api/cloudinary-signature', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          timestamp: Math.round(new Date().getTime() / 1000),
-          folder: 'videos',
-        }),
+        body: JSON.stringify({}), // Empty body to just get API key
       })
       const data = await response.json()
       apiKey = data.apiKey
@@ -69,52 +66,37 @@ export const CloudinaryVideoInput = (props: StringInputProps) => {
         clientAllowedFormats: ['mp4', 'mov', 'avi', 'webm'],
         showPoweredBy: false,
         language: 'ar',
+        folder: 'videos', // Upload to videos folder
         
         // Enable chunked upload for large files
         chunked: true,
         chunkSize: 6000000, // 6MB chunks (recommended for large files)
         maxChunkSize: 20000000, // 20MB max chunk size
         
+        // Video compression settings (will be included in signature automatically)
+        eager: 'q_auto:good,vc_auto,br_1m',
+        
         // Signed upload - allows files larger than 100MB
         uploadSignature: async (callback: any, paramsToSign: any) => {
           try {
-            // Define eager transformations for video compression
-            const eagerTransforms = 'q_auto:good,vc_auto,br_1m'
+            console.log('Params to sign:', paramsToSign)
             
             const response = await fetch('/api/cloudinary-signature', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
-                timestamp: paramsToSign.timestamp,
-                folder: 'videos',
-                eager: eagerTransforms,
+                paramsToSign: paramsToSign, // Send all params from Cloudinary
               }),
             })
             
             const data = await response.json()
+            console.log('Received signature:', data.signature)
             callback(data.signature)
           } catch (error) {
             console.error('Error getting signature:', error)
             alert('حدث خطأ في التوقيع، يرجى المحاولة مرة أخرى')
           }
         },
-        
-        // Video optimization & compression
-        transformation: {
-          quality: 'auto:best',
-          fetch_format: 'auto',
-          video_codec: 'auto',
-        },
-        
-        // Auto-optimize video on upload
-        eager: [
-          {
-            quality: 'auto:good',
-            fetch_format: 'auto',
-            video_codec: 'auto',
-            bit_rate: '1m', // 1Mbps - balance between quality and size
-          },
-        ],
         
         text: {
           ar: {
