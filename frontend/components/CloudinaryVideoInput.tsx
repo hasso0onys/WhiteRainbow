@@ -58,12 +58,16 @@ export const CloudinaryVideoInput = (props: StringInputProps) => {
         // Signed upload - allows files larger than 100MB
         uploadSignature: async (callback: any, paramsToSign: any) => {
           try {
+            // Define eager transformations for video compression
+            const eagerTransforms = 'q_auto:good,vc_auto,br_1m'
+            
             const response = await fetch('/api/cloudinary-signature', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 timestamp: paramsToSign.timestamp,
                 folder: 'videos',
+                eager: eagerTransforms,
               }),
             })
             
